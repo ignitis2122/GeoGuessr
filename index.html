@@ -31,7 +31,19 @@
         padding: 0.5rem 1rem;
         cursor: pointer;
       }
-      
+      #header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2rem;
+      background-color: skyblue;
+      font-size: 50px;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
       h1{
         max-width: 750%;
         margin: 4rem auto 2rem auto;
@@ -48,8 +60,8 @@
       }
       
       #scrolly {
-  position: relative;
-  padding: 1rem 0 1rem 0;
+        position: relative;
+       padding: 1rem 0 1rem 0;
       }
 
       .scrolly-overlay {
@@ -147,10 +159,10 @@
   </head>
 
   <body>
+  <div id="header">
 	<h1>Google Street View: Who Gets It?</h1>
-  <br>  <br>  <br>
   <p>Ignacio Somoza, CSTC 2310</p>
-
+    </div>
       <section id="scrolly">
         <div class="sticky-thing">
           <div id="zoomBox">
@@ -192,7 +204,11 @@
           <div class="step" id="step10">
             <p>Sure, this makes life a little easier (albeit less interesting) for GeoGuessr players, but what does this mean? And why are they all not on Street View?</p>
           </div>
-              <!-- Part 2: World Map divider -->
+         
+             <div id="header">
+	      <h1>2: The World Map</h1>
+             </div>
+
           <div class="step" id="step11">
             <p>Here's what the Street View world map looked like in 2021, just 5 years ago.</p>
           </div>
@@ -214,7 +230,12 @@
           <div class="step" id="step17">
             <p>So, what decides if your country gets coverage or not? Let's take a look at some examples.</p>
           </div>
-          <!-- Germany section divider -->
+          
+            <div id="header">
+	      <h1>3: Germany</h1>
+             </div>
+
+
           <div class="step" id="step18">
             <p>Germany stood out as the one nation in Western Europe (and the developed world, really) that didn't have full Street View coverage until recently. In 2010, they rolled out coverage for 20 cities.</p>
           </div>
@@ -257,7 +278,12 @@
           <div class="step" id="step32">
             <p>Have Germans lost their _____, or ___?</p>
           </div>
-        <!-- China Divider -->
+        
+               
+            <div id="header">
+	      <h1>4: China // Taiwan // Hong Kong</h1>
+             </div>
+
           <div class="step" id="step33">
             <p>Perhaps the most striking nation missing in the expanse of global street coverage is China.</p>
           </div>
@@ -271,7 +297,7 @@
             <p>As you expected, the answer is government.</p>
           </div>
           <div class="step" id="step37">
-            <p>China outlaws surveying and mapping in the country to all non-Chinese companies, and is notoriously strict on foreign actors, privacy, and online content</p>
+            <p>China outlaws surveying and mapping in the country to all non-Chinese companies, and is notoriously strict on foreign actors, privacy, and online content.</p>
           </div>
           <div class="step" id="step38">
             <p>So, until Google becomes Chinese or the Chinese autocracy falls, don't expect to see China on the Street View map.</p>
@@ -300,7 +326,9 @@
           <div class="step" id="step46">
             <p>Final section line of some sort</p>
           </div>
-            <!-- Section divider -->
+      
+         
+          
 
                     <!---I want these two <p>s to be centered-->
             <p>In an ideal world, every nation is mapped on street view; but, as we've seen, whether your country is on street view or not is a factor of privacy laws, form of government, development, safety, tourism, and many other factors. </p>  
@@ -454,11 +482,13 @@
     d3.select("#step17").on('stepin',function(e) {
     console.log("We've arrived at STEP 17 in the photo div")
     d3.select("#scrollyPhoto").attr("src", "images/Qmark.png");
+    d3.select("#scrollyPhoto").style("transform", "scale(0) translate(0%, 0%)");
   })
       // Entering Step 18
     d3.select("#step18").on('stepin',function(e) {
     console.log("We've arrived at STEP 18 in the photo div")
     d3.select("#scrollyPhoto").attr("src", "images/GermanyFocus.png");
+    d3.select("#scrollyPhoto").style("transform", "scale(2.7) translate(-5%, 20%)");
   })
         // Entering Step 19
     d3.select("#step19").on('stepin',function(e) {
@@ -524,6 +554,7 @@
     d3.select("#step33").on('stepin',function(e) {
     console.log("We've arrived at STEP 33 in the photo div")
     d3.select("#scrollyPhoto").attr("src", "images/ChinaMap1.png");
+    d3.select("#scrollyPhoto").style("transform", "scale(2.4) translate(-30%,10%)");
   })
         // Entering Step 34
     d3.select("#step34").on('stepin',function(e) {
@@ -544,15 +575,48 @@
     d3.select("#step37").on('stepin',function(e) {
     console.log("We've arrived at STEP 37 in the photo div")
     d3.select("#scrollyPhoto").attr("src", "images/ChinaMap5.png");
+   d3.select("#scrollyPhoto").style("transform", "scale(3.5) translate(-30%,10%)");
   })
     // Entering Step 38
     d3.select("#step38").on('stepin',function(e) {
     console.log("We've arrived at STEP 38 in the photo div")
     d3.select("#scrollyPhoto").attr("src", "images/ChinaMap6.png");
   })
- 
-    // no 46-59
-
+     // Entering Step 40
+    d3.select("#step40").on('stepin',function(e) {
+    console.log("We've arrived at STEP 38 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/TaiwanMap1.png");
+  })
+     // Entering Step 41
+    d3.select("#step41").on('stepin',function(e) {
+    console.log("We've arrived at STEP 41 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/TaiwanMap2.png");
+  })
+  // Entering Step 42
+    d3.select("#step42").on('stepin',function(e) {
+    console.log("We've arrived at STEP 42 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/TaiwanMap3.png");
+  })
+ // Entering Step 43
+    d3.select("#step43").on('stepin',function(e) {
+    console.log("We've arrived at STEP 43 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/TaiwanMap4.png");
+  })
+// Entering Step 44
+    d3.select("#step44").on('stepin',function(e) {
+    console.log("We've arrived at STEP 44 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/TaiwanMap5.png");
+  })
+  // Entering Step 45
+    d3.select("#step45").on('stepin',function(e) {
+    console.log("We've arrived at STEP 45 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/TaiwanMap6.png");
+  })
+  // Entering Step 46
+    d3.select("#step46").on('stepin',function(e) {
+    console.log("We've arrived at STEP 46 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/MapPorn2.png");
+  })
     // Entering Step 60
     d3.select("#step60").on('stepin',function(e) {
     console.log("We've arrived at STEP 60 in the photo div")
