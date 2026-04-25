@@ -1,0 +1,698 @@
+<!-- The originial version of this template was made by Johnathan Soma and then messed with and customized by Aaron Reiss -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      .modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: palevioletred;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+
+      .modal-content {
+        background: white;
+        padding: 2rem;
+        max-width: 400px;
+        border-radius: 8px;
+        text-align: center;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 14px;
+      }
+
+      .modal button {
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+      }
+      
+      h1{
+        max-width: 50%;
+        margin: 4rem auto 2rem auto;
+        text-align: center
+        }
+      
+      p{
+        max-width: 50%;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        margin: 0 auto 2rem auto;
+        font-size: 19px;
+        text-align: center
+      }
+      
+      #scrolly {
+        position: relative;
+        padding: 1rem;
+      }
+
+      .scrolly-overlay {
+        position: relative;
+        padding: 0;
+        max-width: 35rem;
+        margin-left: 2px;
+        margin-right: auto;
+      }
+
+      .sticky-thing {
+        position: -webkit-sticky;
+        position: sticky;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        z-index: 0;
+        top: 0;
+        height: 100vh;
+        /* Center everything inside */
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .step {
+        margin: 0 auto 2rem auto;
+        margin-bottom: 25rem;
+        background-color: #eee;
+        background-color: #fff;
+        color: black;
+        text-align: center;
+        border: 0px solid red;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+      }
+
+      .step p {
+        padding: 1rem;
+        font-size: 1.25rem;
+        border: black;
+      }
+
+      #zoomBox {
+          overflow: clip;    
+          margin-left: 44vw !important;
+          max-width: 53vw !important;
+          max-height: none !important;
+      }
+      
+      .photoDiv {
+        width: 100%;
+        margin-right: 0px;
+        margin-left: auto;
+        display: block;
+        transition:
+          margin 1.5s 0s,
+          transform 2.5s 0s;
+      }
+
+      /* When it's less than 700 pixels wide, do normal scrollytelling */
+      @media only screen and (min-width: 700px) {
+        #scrolly.side-by-side {
+          display: flex;
+        }
+
+        #scrolly.side-by-side > div {
+          flex-basis: 0;
+          flex-grow: 1;
+          flex-shrink: 1;
+          padding: 0.75em;
+        }
+
+        #scrolly.side-by-side .scrolly-overlay {
+          margin-top: 70vh;
+          order: 0;
+          /* Change these to adjust sizing options */
+          min-width: 15rem;
+          max-width: 20rem;
+        }
+
+        #scrolly.side-by-side .sticky-thing {
+          order: 1;
+          flex-grow: 2;
+        }
+      }
+    </style>
+		<script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.0.4/scrollama.min.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.3.0/d3.min.js"></script>
+  </head>
+
+  <body>
+	<h1>Google Street View: Who Gets It?</h1>
+  <br>  <br>  <br>
+  <p>Ignacio Somoza, CSTC 2310</p>
+
+      <section id="scrolly">
+        <div class="sticky-thing">
+          <div id="zoomBox">
+<!-- Sticky Thing 1 goes below this line -->
+            <img id="scrollyPhoto" class="photoDiv" src="">
+<!-- Sticky Thing 1 goes above this line -->
+          </div>        
+        </div>
+
+        <div class="scrolly-overlay">
+          <div class="step" id="step1">
+            <p>Like many geographically-inclined kids, I was very into GeoGuessr in high school and college.</p>
+          </div>
+          <div class="step" id="step2">
+            <p>I promise I didn't cheat - I just had a feeling that it was northwestern Iowa.</p>
+          </div>
+          <div class="step" id="step3">
+            <p>GeoGuessr is an online game that puts you somewhere on the world in Google Street View. You can move around, pan the camera, and zoom - but your objective is to place a pin somewhere in the world where you think you are.</p>
+          <video width="500" height="400" controls> <source src="images/Video.mov">
+          </video>
+          </div>
+          <div class="step" id="step4">
+            <p>The better you get, the more restrictions you set. You can play NMPZ (No moving, panning, or zooming), or set a timer on each round.</p>
+          </div>
+          <div class="step" id="step5">
+            <p>Or, you can get even more ridiculous.</p>
+          </div>
+          <div class="step" id="step6">
+            <p>Where do you think this is? Place your guesses.</p>
+          </div>
+          <div class="step" id="step7">
+            <p>There's many candidates.</p>
+          </div>
+          <div class="step" id="step8">
+            <p>But, those who play GeoGuessr know that these aren't all options.</p>
+          </div>
+          <div class="step" id="step9">
+            <p>See, not all countries in the world are on GeoGuessr. And they're not all on Street View. </p>
+          </div>
+          <div class="step" id="step10">
+            <p>Sure, this makes life a little easier (albeit less interesting) for GeoGuessr players, but what does this mean? And why are they all not on Street View?</p>
+          </div>
+              <!-- Part 2: World Map divider -->
+          <div class="step" id="step11">
+            <p>Here's what the Street View world map looked like in 2021, just 5 years ago.</p>
+          </div>
+            <div class="step" id="step12">
+            <p>You'll notice some things. The Americas, Europe, Australia and New Zealand have almost full coverage. </p>
+          </div>
+          <div class="step" id="step13">
+            <p>It aligns pretty well with settlement and economic development.</p>
+          </div>
+          <div class="step" id="step14">
+            <p>Conversely, Asia and Africa suffer from <u>massive</u> gaps in coverage.</p>
+          </div>
+          <div class="step" id="step15">
+            <p>Though, some nations stand out.</p>
+          </div>
+          <div class="step" id="step16">
+            <p>Even on a borderless map, you can make out country borders.</p>
+          </div>
+          <div class="step" id="step17">
+            <p>So, what decides if your country gets coverage or not? Let's take a look at some examples.</p>
+          </div>
+          <!-- Germany section divider -->
+          <div class="step" id="step18">
+            <p>Germany stood out as the one nation in Western Europe (and the developed world, really) that didn't have full Street View coverage until recently. In 2010, they rolled out coverage for 20 cities.</p>
+          </div>
+          <div class="step" id="step19">
+            <p>Let's see what the street view pictures looked like. See anything?</p>
+          </div>
+          <div class="step" id="step20">
+            <p>Not really. That's probably because it's all blurred.</p>
+          </div>
+          <div class="step" id="step21">
+            <p>The European Union has notoriously strict privacy and protection laws. Germany is no different. They maintained that they wouldn't allow Google to map streets until all privacy concerns have been addressed.</p>
+          </div>
+          <div class="step" id="step22">
+            <p>“What is private must remain private” - Ilse Aigner, German Consumer Protection Minister, 2013 </p>
+          </div>
+          <div class="step" id="step23">
+            <p>Germans are willing to pay significantly more than others to protect their privacy. What separates Germany from others?</p>
+          </div>
+          <div class="step" id="step24">
+            <p>In short, history.</p>
+          </div>
+          <div class="step" id="step25">
+            <p>Germany has had not one, but two extremely invasive surveillance states in the past century:</p>
+          </div>
+          <div class="step" id="step26">
+            <p>The Gestapo in Nazi Germany's government,</p>
+          </div>
+          <div class="step" id="step27">
+            <p>and the Stasi under the German Democratic Republic (GDR) puppet state.</p>
+          </div>
+          <div class="step" id="step28">
+            <p>annotation step</p>
+          </div>
+          <div class="step" id="step29">
+            <p>30 years after Germany's independence, their culture around privacy is tighter than ever.</p>
+          </div>
+          <div class="step" id="step31">
+            <p>In 2023, Google rolled out full Germany Street View coverage, with increased privacy regulations - filling the Street View hole in Central Europe. </p>
+          </div>
+          <div class="step" id="step32">
+            <p>Have Germans lost their _____, or ___?</p>
+          </div>
+        <!-- China Divider -->
+          <div class="step" id="step33">
+            <p>Perhaps the most striking nation missing in the expanse of global street coverage is China.</p>
+          </div>
+          <div class="step" id="step34">
+            <p>The second most populous country in the world, there is just a small amount of street view coverage by domestic companies in major cities. </p>
+          </div>
+          <div class="step" id="step35">
+            <p>But still, it's lacking coverage on the Google Street View map. Why is it missing?</p>
+          </div>
+          <div class="step" id="step36">
+            <p>As you expected, the answer is government.</p>
+          </div>
+          <div class="step" id="step37">
+            <p>China outlaws surveying and mapping in the country to all non-Chinese companies, and is notoriously strict on foreign actors, privacy, and online content</p>
+          </div>
+          <div class="step" id="step38">
+            <p>So, until Google becomes Chinese or the Chinese autocracy falls, don't expect to see China on the Street View map.</p>
+          </div>
+          <div class="step" id="step39">
+            <p>intermediate step / barrier of some sort</p>
+          </div>
+          <div class="step" id="step40">
+            <p>If you look closely on the map, though, Taiwan and Hong Kong have full Google Street View coverage.</p>
+          </div>
+          <div class="step" id="step41">
+            <p>So, why do they have coverage, but China doesn't?</p>
+          </div>
+          <div class="step" id="step42">
+            <p>As you expected, the answer is, once again, government.</p>
+          </div>
+          <div class="step" id="step43">
+            <p>Taiwan is a democratic country, with less restrictions on foreign companies operating within its borders. </p>
+          </div>
+          <div class="step" id="step44">
+            <p>The situation in Hong Kong is more complicated, with China having some authority over it, but it is semi-democratic (although, in recent years, has become less so). The key difference is that surveying is allowed in Hong Kong.</p>
+          </div>
+          <div class="step" id="step45">
+            <p>In East Asia, we clearly see the divide between the democratic and the authoritarian, the street view coverage and no street view coverage. </p>
+          </div>
+          <div class="step" id="step46">
+            <p>Final section line of some sort</p>
+          </div>
+          <!-- Qatar Divider -->
+          <div class="step" id="step47">
+            <p>Qatar put itself on the map - both figuratively and literally, with its bid to host the 2022 World Cup. </p>
+          </div>
+          <div class="step" id="step48">
+            <p>While </p>
+          </div>
+          <div class="step" id="step49">
+            <p>Hi</p>
+          </div>
+          <div class="step" id="step50">
+            <p>Hi</p>
+          </div>
+          <div class="step" id="step51">
+            <p>Hi</p>
+          </div>
+          <div class="step" id="step52">
+            <p>Hi</p>
+          </div>
+          <div class="step" id="step53">
+            <p>Hi</p>
+          </div>
+          <div class="step" id="step54">
+            <p>Hi</p>
+          </div>
+          <div class="step" id="step55">
+            <p>Hi</p>
+          </div>
+          <div class="step" id="step56">
+            <p>Hi</p>
+          </div>
+            <!-- Section divider -->
+
+                    <!---I want these two <p>s to be centered-->
+            <p>In an ideal world, every nation is mapped on street view; but, as we've seen, whether your country is on street view or not is a factor of privacy laws, form of government, development, safety, tourism, and many other factors. </p>  
+          <br><br>            
+            <p>But what can Google Street View be used for, other than expanding GeoGuessr players’ opportunities?</p>
+        
+          <div class="step" id="step59">
+            <p>Providing panorama coverage or indoor tours of famous locations and museums,</p>
+          </div>
+          <div class="step" id="step60">
+            <p>Analyzing urban issues and trends,</p>
+          </div>
+          <div class="step" id="step61">
+            <p>Mapping out your country's beauty to attract tourists,</p>
+          </div>
+          <div class="step" id="step62">
+            <p>Analyzing concentrations of greenhouse gases and pollutants in the atmosphere,</p>
+          </div>
+          <div class="step" id="step63">
+            <p>Even helping solve crimes.</p>
+          </div>
+          <!--center-->
+            <p>But most importantly,</p>
+                <br><br><br><br><br>
+              <!---I want to make the font on the one under this bigger (also centered)-->
+            <p>It helps us see the world!</p>
+                <br><br>     
+          <div class="step" id="step66">
+            <p>We use Google Maps every day, and street view helps us with daily life - planning out trips, looking for housing, or even finding an entrance to a building, satisfying our curiosity.</p>
+          </div> 
+          <div class="step" id="step67">
+            <p>Depending on where you live, you might have this luxury, or you might not.</p>
+          </div>
+          <div class="step" id="step68">
+            <p>It makes a difference. It is a privilege to be able to see accurate panoramic photos of your street,</p>
+          </div>
+             <div class="step" id="step69">
+            <p>your neighborhood,</p>
+          </div>
+             <div class="step" id="step70">
+            <p>your city,</p>
+          </div>
+             <div class="step" id="step71">
+            <p>and country on the internet.</p>
+          </div>
+          <div class="step" id="step72">
+            <p>Since this 2021 street view map, Google has added new or expanded coverage to many countries in every continent. </p>
+          </div>
+          <div class="step" id="step73">
+            <p>As ___ becomes more important, we can only hope that ___. </p>
+          </div>
+          <div class="step" id="step74">
+            <p>And maybe, along the way, making GeoGuessr a little more difficult.</p>
+          </div>
+        </div>
+      </section>
+
+    <!-- Mobile Warning Modal -->
+    <div id="deviceModal" class="modal">
+      <div class="modal-content">
+        <span>
+          Wow! One of your friends must be in Aaron Reiss's "Telling Stories With Maps" class — how cool! <br><br> Sadly, this site is meant to be viewed on a computer, so if you are on a phone or tablet then it's gonna look all kinds of wonky and you might get the wrong impression about how amazing this work is.
+        </span>
+        <button id="continueBtn">Continue Anyway</button>
+      </div>
+    </div>
+
+<script>
+
+/* Scrollytelling code goes under here */
+
+  // Code for the Photo Div #1 (aka #scrollyPhoto1)
+    
+    // Entering Step One
+  d3.select("#step1").on('stepin',function(e) {
+    console.log("We've arrived at STEP ONE in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/kickedout.png");
+    // d3.select("#scrollyPhoto").style("transform", "scale(2.9) translate(0%, -10%)");
+  })
+
+    // Entering Step Two
+    d3.select("#step2").on('stepin',function(e) {
+    console.log("We've arrived at STEP TWO in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/Score3.jpg");
+  })
+    // Entering Step Three
+    d3.select("#step3").on('stepin',function(e) {
+    console.log("We've arrived at STEP THREE in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/GuessMap.jpg");
+  })
+    // Entering Step Four
+    d3.select("#step4").on('stepin',function(e) {
+    console.log("We've arrived at STEP FIVE in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/settings2.png");
+    // d3.select("#zoomBox").append("img").attr("src", "images/settings.png").style("position", "absolute")
+  })
+    // Entering Step Five
+    d3.select("#step5").on('stepin',function(e) {
+    console.log("We've arrived at STEP FIVE in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/rainbolt2.png");
+  })
+    // Entering Step Six
+    d3.select("#step6").on('stepin',function(e) {
+    console.log("We've arrived at STEP SIX in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/UAE.png");
+  })
+    // Entering Step Seven
+    d3.select("#step7").on('stepin',function(e) {
+    console.log("We've arrived at STEP SEVEN in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/MENAmaptest.png");
+  })
+    // Entering Step Eight
+    d3.select("#step8").on('stepin',function(e) {
+    console.log("We've arrived at STEP EIGHT in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/MENAmaptest2.png");
+  })
+
+    // Skipping 9 + 10
+
+    // Entering Step Eleven
+    d3.select("#step11").on('stepin',function(e) {
+    console.log("We've arrived at STEP ELEVEN in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/MapPorn2.jpg");
+  })
+    // Entering Step Twelve
+    d3.select("#step12").on('stepin',function(e) {
+    console.log("We've arrived at STEP twelve in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/HolesPunched.png");
+  })
+    // Entering Step Thirteen
+    d3.select("#step13").on('stepin',function(e) {
+    console.log("We've arrived at STEP thirteen in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/HolesPunched2.png");
+  })
+    // Entering Step 14
+    d3.select("#step14").on('stepin',function(e) {
+    console.log("We've arrived at STEP 14 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/AfricaAsia.png");
+  })
+    // Entering Step 15
+    d3.select("#step15").on('stepin',function(e) {
+    console.log("We've arrived at STEP 15 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/AfricaAsia2.png");
+  })
+    // Entering Step 16
+    d3.select("#step16").on('stepin',function(e) {
+    console.log("We've arrived at STEP 16 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/Outlines.png");
+  })
+    // Entering Step 17
+    d3.select("#step17").on('stepin',function(e) {
+    console.log("We've arrived at STEP 17 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/Qmark.png");
+  })
+      // Entering Step 18
+    d3.select("#step18").on('stepin',function(e) {
+    console.log("We've arrived at STEP 18 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/GermanyFocus.png");
+  })
+        // Entering Step 19
+    d3.select("#step19").on('stepin',function(e) {
+    console.log("We've arrived at STEP 18 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/GermanyAnno1.png");
+  })
+        // Entering Step 20
+    d3.select("#step20").on('stepin',function(e) {
+    console.log("We've arrived at STEP 20 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/GermanyAnno2.png");
+  })
+        // Entering Step 21
+    d3.select("#step21").on('stepin',function(e) {
+    console.log("We've arrived at STEP 21 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/GermanyAnno3.png");
+  })
+        // Entering Step 22
+    d3.select("#step22").on('stepin',function(e) {
+    console.log("We've arrived at STEP 22 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/GermanyAnno4.png");
+  })
+        // Entering Step 23
+    d3.select("#step23").on('stepin',function(e) {
+    console.log("We've arrived at STEP 23 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/GermanyAnno5.png");
+  })
+        // Entering Step 24
+    d3.select("#step24").on('stepin',function(e) {
+    console.log("We've arrived at STEP 24 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/GermanyAnno6.png");
+  })
+        // Entering Step 26
+    d3.select("#step26").on('stepin',function(e) {
+    console.log("We've arrived at STEP 26 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/GermanyAnno7.png");
+  })
+        // Entering Step 27
+    d3.select("#step27").on('stepin',function(e) {
+    console.log("We've arrived at STEP 27 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/GermanyAnno8.png");
+  })
+        // Entering Step 28
+    d3.select("#step28").on('stepin',function(e) {
+    console.log("We've arrived at STEP 28 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/GermanyAnno9.png");
+  })
+        // Entering Step 29
+    d3.select("#step29").on('stepin',function(e) {
+    console.log("We've arrived at STEP 29 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/GermanyAnno91.png");
+  })
+        // Entering Step 31
+    d3.select("#step31").on('stepin',function(e) {
+    console.log("We've arrived at STEP 31 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/GermanyAnno92.png");
+  })
+          // Entering Step 32
+    d3.select("#step32").on('stepin',function(e) {
+    console.log("We've arrived at STEP 31 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/GermanyAnno0.png");
+  })
+        // Entering Step 33
+    d3.select("#step33").on('stepin',function(e) {
+    console.log("We've arrived at STEP 33 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/ChinaMap1.png");
+  })
+        // Entering Step 34
+    d3.select("#step34").on('stepin',function(e) {
+    console.log("We've arrived at STEP 32 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/ChinaMap2.png");
+  })
+        // Entering Step 35
+    d3.select("#step35").on('stepin',function(e) {
+    console.log("We've arrived at STEP 33 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/ChinaMap3.png");
+  })
+        // Entering Step 36
+    d3.select("#step36").on('stepin',function(e) {
+    console.log("We've arrived at STEP 34 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/ChinaMap4.png");
+  })
+      // Entering Step 37
+    d3.select("#step37").on('stepin',function(e) {
+    console.log("We've arrived at STEP 37 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/ChinaMap5.png");
+  })
+    // Entering Step 38
+    d3.select("#step38").on('stepin',function(e) {
+    console.log("We've arrived at STEP 38 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/ChinaMap6.png");
+  })
+    // Entering Step 47
+    d3.select("#step47").on('stepin',function(e) {
+    console.log("We've arrived at STEP 47 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/QatarFlag.png");
+  })
+    // Entering Step 56
+    d3.select("#step56").on('stepin',function(e) {
+    console.log("We've arrived at STEP 56 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/QatarFlag.png");
+  })
+    // Entering Step 57
+    d3.select("#step57").on('stepin',function(e) {
+    console.log("We've arrived at STEP 57 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/QatarFlag.png");
+  })
+    // Entering Step 59
+    d3.select("#step59").on('stepin',function(e) {
+    console.log("We've arrived at STEP 57 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/Uses4.png");
+  })
+    // Entering Step 60
+    d3.select("#step60").on('stepin',function(e) {
+    console.log("We've arrived at STEP 60 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/Uses1.png");
+  })
+    // Entering Step 61
+    d3.select("#step61").on('stepin',function(e) {
+    console.log("We've arrived at STEP 61 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/Uses51.png");
+  })
+    // Entering Step 62
+    d3.select("#step62").on('stepin',function(e) {
+    console.log("We've arrived at STEP 62 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/Uses2.png");
+  })
+    // Entering Step 63
+    d3.select("#step63").on('stepin',function(e) {
+    console.log("We've arrived at STEP 63 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/Uses3.png");
+  })
+      // Entering Step 66
+    d3.select("#step66").on('stepin',function(e) {
+    console.log("We've arrived at STEP 66 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/MapPorn2.jpg");
+  })
+        // Entering Step 67
+    d3.select("#step67").on('stepin',function(e) {
+    console.log("We've arrived at STEP 67 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/PRmap1.png");
+  })
+    // Entering Step 68
+    d3.select("#step68").on('stepin',function(e) {
+    console.log("We've arrived at STEP 68 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/PRmap2.png");
+  })
+  // Entering Step 69
+    d3.select("#step69").on('stepin',function(e) {
+    console.log("We've arrived at STEP 69 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/PRmap3.png");
+  })
+  // Entering Step 70
+    d3.select("#step70").on('stepin',function(e) {
+    console.log("We've arrived at STEP 70 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/PRmap4.png");
+  })
+  // Entering Step 71
+    d3.select("#step71").on('stepin',function(e) {
+    console.log("We've arrived at STEP 71 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/PRmap5.png");
+  })
+  // Entering Step 72
+    d3.select("#step72").on('stepin',function(e) {
+    console.log("We've arrived at STEP 72 in the photo div")
+    d3.select("#scrollyPhoto").attr("src", "images/Finaltest.png");
+  })
+</script>
+
+<!-- LEAVE ALONE, scrolly code goes in the section below -->
+<script>
+    const scroller = scrollama();
+
+	scroller
+		.setup({
+			step: "#scrolly .scrolly-overlay .step",
+			offset: 0.5,
+			debug: false
+		})
+		.onStepEnter(function({ element, index, direction}) {
+			const event = new CustomEvent('stepin', { detail: { direction: direction } })
+			element.dispatchEvent(event);
+		})
+		.onStepExit(function({ element, index, direction }) {
+			const event = new CustomEvent('stepout', { detail: { direction: direction } })
+			element.dispatchEvent(event);
+		});
+
+	window.addEventListener("resize", scroller.resize);
+    </script>
+
+
+<!-- mobile phone warning modal -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const isSmallScreen = window.innerWidth <= 900;
+
+    if (isSmallScreen) {
+      document.getElementById("deviceModal").style.display = "flex";
+    }
+
+    document
+      .getElementById("continueBtn")
+      .addEventListener("click", function () {
+        document.getElementById("deviceModal").style.display = "none";
+      });
+  });
+</script>
+
+  </body>
+</html>
