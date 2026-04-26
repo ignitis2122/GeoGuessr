@@ -308,7 +308,7 @@
         <p>and the Stasi under the German Democratic Republic (GDR) puppet state,</p>
       </div>
       <div class="step" id="step28">
-        <p>Germany has had not one, but two extremely invasive surveillance states in the past century</p>
+        <p>Germany has had not one, but two extremely invasive surveillance states in the past century.</p>
       </div>
       <div class="step" id="step29">
         <p>30 years after Germany's independence, their culture around privacy is tighter than ever.</p>
@@ -343,9 +343,6 @@
       </div>
       <div class="step" id="step38">
         <p>So, until Google becomes Chinese or the Chinese autocracy falls, don't expect to see China on the Street View map.</p>
-      </div>
-      <div class="step" id="step39">
-        <p>intermediate step / barrier of some sort</p>
       </div>
       <div class="step" id="step40">
         <p>If you look closely on the map, though, Taiwan and Hong Kong have full Google Street View coverage.</p>
@@ -589,12 +586,13 @@
     d3.select("#step32").on('stepin',function(e) {
     console.log("We've arrived at STEP 31 in the photo div")
     d3.select("#scrollyPhoto").attr("src", "images/GermanyAnno0.png");
+    d3.select("#scrollyPhoto").style("transform", "scale(2.7) translate(-5%, 20%)");
   })
         // Entering Step 33
     d3.select("#step33").on('stepin',function(e) {
     console.log("We've arrived at STEP 33 in the photo div")
     d3.select("#scrollyPhoto").attr("src", "images/ChinaMap1.png");
-    d3.select("#scrollyPhoto").style("transform", "scale(2.4) translate(-30%,10%)");
+    d3.select("#scrollyPhoto").style("transform", "scale(3.5) translate(-30%,10%)");
   })
         // Entering Step 34
     d3.select("#step34").on('stepin',function(e) {
@@ -655,12 +653,13 @@
   // Entering Step 46
     d3.select("#step46").on('stepin',function(e) {
     console.log("We've arrived at STEP 46 in the photo div")
-    d3.select("#scrollyPhoto").attr("src", "images/MapPorn2.png");
+    d3.select("#scrollyPhoto").attr("src", "images/MapPorn2.jpg");
   })
     // Entering Step 60
     d3.select("#step60").on('stepin',function(e) {
     console.log("We've arrived at STEP 60 in the photo div")
     d3.select("#scrollyPhoto").attr("src", "images/Uses1.png");
+    d3.select("#scrollyPhoto").style("transform", "scale(1) translate(0%,0%)");
   })
     // Entering Step 61
     d3.select("#step61").on('stepin',function(e) {
@@ -681,11 +680,13 @@
     d3.select("#step66").on('stepin',function(e) {
     console.log("We've arrived at STEP 66 in the photo div")
     d3.select("#scrollyPhoto").attr("src", "images/MapPorn2.jpg");
+    d3.select("#scrollyPhoto").style("transform", "scale(1) translate(0%,0%)");
   })
         // Entering Step 67
     d3.select("#step67").on('stepin',function(e) {
     console.log("We've arrived at STEP 67 in the photo div")
     d3.select("#scrollyPhoto").attr("src", "images/PRmap1.png");
+    d3.select("#scrollyPhoto").style("transform", "scale(3.5) translate(20%,5%)");
   })
     // Entering Step 68
     d3.select("#step68").on('stepin',function(e) {
@@ -711,6 +712,7 @@
     d3.select("#step72").on('stepin',function(e) {
     console.log("We've arrived at STEP 72 in the photo div")
     d3.select("#scrollyPhoto").attr("src", "images/Finaltest.png");
+    d3.select("#scrollyPhoto").style("transform", "scale(1) translate(0%,0%)");
   })
 </script>
 
