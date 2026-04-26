@@ -140,6 +140,7 @@
 
       .photoDiv {
         width: 100%;
+          height: 100%;
         margin-right: 0px;
         margin-left: auto;
         display: block;
@@ -202,10 +203,10 @@
 
     <div class="scrolly-overlay">
       <div class="step" id="step1">
-        <p>Like many geographically-inclined kids, I was very into GeoGuessr in high school and college.</p>
+        <p>Like many geographically-inclined kids, I was very into GeoGuessr in high school and college. </p>
       </div>
       <div class="step" id="step2">
-        <p>I promise I didn't cheat - I just had a feeling that it was northwestern Iowa.</p>
+        <p>Me and my best friend even won $200 in a tournament.</p>
       </div>
       <div class="step" id="step3">
         <p>GeoGuessr is an online game that puts you somewhere on the world in Google Street View. You can move around, pan the camera, and zoom - but your objective is to place a pin somewhere in the world where you think you are.</p>
@@ -299,7 +300,7 @@
         <p>and the Stasi under the German Democratic Republic (GDR) puppet state.</p>
       </div>
       <div class="step" id="step28">
-        <p>annotation step</p>
+        <p><br></p>
       </div>
       <div class="step" id="step29">
         <p>30 years after Germany's independence, their culture around privacy is tighter than ever.</p>
@@ -440,9 +441,7 @@
   d3.select("#step1").on('stepin',function(e) {
     console.log("We've arrived at STEP ONE in the photo div")
     d3.select("#scrollyPhoto").attr("src", "images/kickedout.png");
-
   })
-
     // Entering Step Two
     d3.select("#step2").on('stepin',function(e) {
     console.log("We've arrived at STEP TWO in the photo div")
