@@ -31,37 +31,59 @@
         padding: 0.5rem 1rem;
         cursor: pointer;
       }
+
       #header {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 2rem;
-      background-color: skyblue;
-      font-size: 50px;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+        background-color: skyblue;
+        font-size: 50px;
       }
+
+      .section-header {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: skyblue;
+        font-size: 50px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .section-header h1 {
+        margin: 0;
+        text-align: center;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        background-color: skyblue;
+      }
+
       body {
         margin: 0;
         padding: 0;
       }
-      h1{
+
+      h1 {
         max-width: 750%;
         margin: 4rem auto 2rem auto;
         text-align: center;
         font-family: Georgia, 'Times New Roman', Times, serif;
-        }
-      
-      p{
+        background-color: skyblue;
+      }
+
+      p {
         max-width: 750%;
         font-family: Georgia, 'Times New Roman', Times, serif;
         margin: 0 auto 2rem auto;
         font-size: 19px;
-        text-align: center
+        text-align: center;
       }
-      
+
       #scrolly {
         position: relative;
-       padding: 1rem 0 1rem 0;
+        padding: 1rem 0 1rem 0;
       }
 
       .scrolly-overlay {
@@ -81,7 +103,6 @@
         z-index: 0;
         top: 0;
         height: 100vh;
-        /* Center everything inside */
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -106,15 +127,16 @@
       }
 
       #zoomBox {
-    overflow: clip;    
-    margin-left: 38vw !important;
-    width: 62vw !important;
-    max-width: 62vw !important;
-    max-height: none !important;
-    margin-right: 0 !important;
-    padding-right: 0 !important;
-}
-      
+        overflow: clip;
+        margin-left: 38vw !important;
+        width: 62vw !important;
+        max-width: 62vw !important;
+        max-height: none !important;
+        margin-right: 0 !important;
+        padding-right: 0 !important;
+        position: relative;
+      }
+
       .photoDiv {
         width: 100%;
         margin-right: 0px;
@@ -125,31 +147,36 @@
           transform 2.5s 0s;
       }
 
-      /* When it's less than 700 pixels wide, do normal scrollytelling */
       @media only screen and (min-width: 700px) {
         #scrolly.side-by-side {
           display: flex;
+          flex-wrap: wrap;
+          align-items: flex-start;
         }
-
-        #scrolly.side-by-side > div {
-          flex-basis: 0;
-          flex-grow: 1;
-          flex-shrink: 1;
-          padding: 0.75em;
-        }
-
-        #scrolly.side-by-side .scrolly-overlay {
-          margin-top: 70vh;
-          order: 0;
-          min-width: 15rem;
-          max-width: 17rem;
-          margin-left: 0;
-          padding-left: 0;
-}
 
         #scrolly.side-by-side .sticky-thing {
           order: 1;
-          flex-grow: 2;
+          flex: 0 0 62%;
+          max-width: 62%;
+          position: sticky;
+          top: 0;
+          height: 100vh
+          align-self: flex-start;
+        }
+
+        #scrolly.side-by-side .scrolly-overlay {
+          order: 0;
+          flex: 0 0 38%;
+          max-width: 38%;
+          margin-top: 70vh;
+          margin-left: 0;
+          padding-left: 0.75em;
+        }
+
+        #scrolly.side-by-side .section-header {
+          order: 0;
+          flex: 0 0 100%;
+          max-width: 100%;
         }
       }
     </style>
@@ -162,229 +189,235 @@
   <div id="header">
 	<h1>Google Street View: Who Gets It?</h1>
   <p>Ignacio Somoza, CSTC 2310</p>
+  </div>
+
+  <section id="scrolly" class="side-by-side">
+
+    <div class="sticky-thing">
+      <div id="zoomBox">
+        <img id="scrollyPhoto" class="photoDiv" src="">
+      </div>
     </div>
-      <section id="scrolly">
-        <div class="sticky-thing">
-          <div id="zoomBox">
-<!-- Sticky Thing 1 goes below this line -->
-            <img id="scrollyPhoto" class="photoDiv" src="">
-<!-- Sticky Thing 1 goes above this line -->
-          </div>        
-        </div>
-        <div class="scrolly-overlay">
-          <div class="step" id="step1">
-            <p>Like many geographically-inclined kids, I was very into GeoGuessr in high school and college.</p>
-          </div>
-          <div class="step" id="step2">
-            <p>I promise I didn't cheat - I just had a feeling that it was northwestern Iowa.</p>
-          </div>
-          <div class="step" id="step3">
-            <p>GeoGuessr is an online game that puts you somewhere on the world in Google Street View. You can move around, pan the camera, and zoom - but your objective is to place a pin somewhere in the world where you think you are.</p>
-          <video width="500" height="400" controls> <source src="images/VideoReal.mov">
-          </video>
-          </div>
-          <div class="step" id="step4">
-            <p>The better you get, the more restrictions you set. You can play NMPZ (No moving, panning, or zooming), or set a timer on each round.</p>
-          </div>
-          <div class="step" id="step5">
-            <p>Or, you can get even more ridiculous.</p>
-          </div>
-          <div class="step" id="step6">
-            <p>Where do you think this is? Place your guesses.</p>
-          </div>
-          <div class="step" id="step7">
-            <p>There's many candidates.</p>
-          </div>
-          <div class="step" id="step8">
-            <p>But, those who play GeoGuessr know that these aren't all options.</p>
-          </div>
-          <div class="step" id="step9">
-            <p>See, not all countries in the world are on GeoGuessr. And they're not all on Street View. </p>
-          </div>
-          <div class="step" id="step10">
-            <p>Sure, this makes life a little easier (albeit less interesting) for GeoGuessr players, but what does this mean? And why are they all not on Street View?</p>
-          </div>
-         
-             <div id="header">
-	      <h1>2: The World Map</h1>
-             </div>
 
-          <div class="step" id="step11">
-            <p>Here's what the Street View world map looked like in 2021, just 5 years ago.</p>
-          </div>
-            <div class="step" id="step12">
-            <p>You'll notice some things. The Americas, Europe, Australia and New Zealand have almost full coverage. </p>
-          </div>
-          <div class="step" id="step13">
-            <p>It aligns pretty well with settlement and economic development.</p>
-          </div>
-          <div class="step" id="step14">
-            <p>Conversely, Asia and Africa suffer from <u>massive</u> gaps in coverage.</p>
-          </div>
-          <div class="step" id="step15">
-            <p>Though, some nations stand out.</p>
-          </div>
-          <div class="step" id="step16">
-            <p>Even on a borderless map, you can make out country borders.</p>
-          </div>
-          <div class="step" id="step17">
-            <p>So, what decides if your country gets coverage or not? Let's take a look at some examples.</p>
-          </div>
-          
-            <div id="header">
-	      <h1>3: Germany</h1>
-             </div>
+    <div class="scrolly-overlay">
+      <div class="step" id="step1">
+        <p>Like many geographically-inclined kids, I was very into GeoGuessr in high school and college.</p>
+      </div>
+      <div class="step" id="step2">
+        <p>I promise I didn't cheat - I just had a feeling that it was northwestern Iowa.</p>
+      </div>
+      <div class="step" id="step3">
+        <p>GeoGuessr is an online game that puts you somewhere on the world in Google Street View. You can move around, pan the camera, and zoom - but your objective is to place a pin somewhere in the world where you think you are.</p>
+        <video width="500" height="400" controls> <source src="images/VideoReal.mov">
+        </video>
+      </div>
+      <div class="step" id="step4">
+        <p>The better you get, the more restrictions you set. You can play NMPZ (No moving, panning, or zooming), or set a timer on each round.</p>
+      </div>
+      <div class="step" id="step5">
+        <p>Or, you can get even more ridiculous.</p>
+      </div>
+      <div class="step" id="step6">
+        <p>Where do you think this is? Place your guesses.</p>
+      </div>
+      <div class="step" id="step7">
+        <p>There's many candidates.</p>
+      </div>
+      <div class="step" id="step8">
+        <p>But, those who play GeoGuessr know that these aren't all options.</p>
+      </div>
+      <div class="step" id="step9">
+        <p>See, not all countries in the world are on GeoGuessr. And they're not all on Street View. </p>
+      </div>
+      <div class="step" id="step10">
+        <p>Sure, this makes life a little easier (albeit less interesting) for GeoGuessr players, but what does this mean? And why are they all not on Street View?</p>
+      </div>
+    </div>
 
+    <div class="section-header">
+      <h1>2: The World Map</h1>
+    </div>
 
-          <div class="step" id="step18">
-            <p>Germany stood out as the one nation in Western Europe (and the developed world, really) that didn't have full Street View coverage until recently. In 2010, they rolled out coverage for 20 cities.</p>
-          </div>
-          <div class="step" id="step19">
-            <p>Let's see what the street view pictures looked like. See anything?</p>
-          </div>
-          <div class="step" id="step20">
-            <p>Not really. That's probably because it's all blurred.</p>
-          </div>
-          <div class="step" id="step21">
-            <p>The European Union has notoriously strict privacy and protection laws. Germany is no different. They maintained that they wouldn't allow Google to map streets until all privacy concerns have been addressed.</p>
-          </div>
-          <div class="step" id="step22">
-            <p>“What is private must remain private” - Ilse Aigner, German Consumer Protection Minister, 2013 </p>
-          </div>
-          <div class="step" id="step23">
-            <p>Germans are willing to pay significantly more than others to protect their privacy. What separates Germany from others?</p>
-          </div>
-          <div class="step" id="step24">
-            <p>In short, history.</p>
-          </div>
-          <div class="step" id="step25">
-            <p>Germany has had not one, but two extremely invasive surveillance states in the past century:</p>
-          </div>
-          <div class="step" id="step26">
-            <p>The Gestapo in Nazi Germany's government,</p>
-          </div>
-          <div class="step" id="step27">
-            <p>and the Stasi under the German Democratic Republic (GDR) puppet state.</p>
-          </div>
-          <div class="step" id="step28">
-            <p>annotation step</p>
-          </div>
-          <div class="step" id="step29">
-            <p>30 years after Germany's independence, their culture around privacy is tighter than ever.</p>
-          </div>
-          <div class="step" id="step31">
-            <p>In 2023, Google rolled out full Germany Street View coverage, with increased privacy regulations - filling the Street View hole in Central Europe. </p>
-          </div>
-          <div class="step" id="step32">
-            <p>Have Germans lost their _____, or ___?</p>
-          </div>
-        
-               
-            <div id="header">
-	      <h1>4: China // Taiwan // Hong Kong</h1>
-             </div>
+    <div class="scrolly-overlay">
+      <div class="step" id="step11">
+        <p>Here's what the Street View world map looked like in 2021, just 5 years ago.</p>
+      </div>
+      <div class="step" id="step12">
+        <p>You'll notice some things. The Americas, Europe, Australia and New Zealand have almost full coverage. </p>
+      </div>
+      <div class="step" id="step13">
+        <p>It aligns pretty well with settlement and economic development.</p>
+      </div>
+      <div class="step" id="step14">
+        <p>Conversely, Asia and Africa suffer from <u>massive</u> gaps in coverage.</p>
+      </div>
+      <div class="step" id="step15">
+        <p>Though, some nations stand out.</p>
+      </div>
+      <div class="step" id="step16">
+        <p>Even on a borderless map, you can make out country borders.</p>
+      </div>
+      <div class="step" id="step17">
+        <p>So, what decides if your country gets coverage or not? Let's take a look at some examples.</p>
+      </div>
+    </div>
 
-          <div class="step" id="step33">
-            <p>Perhaps the most striking nation missing in the expanse of global street coverage is China.</p>
-          </div>
-          <div class="step" id="step34">
-            <p>The second most populous country in the world, there is just a small amount of street view coverage by domestic companies in major cities. </p>
-          </div>
-          <div class="step" id="step35">
-            <p>But still, it's lacking coverage on the Google Street View map. Why is it missing?</p>
-          </div>
-          <div class="step" id="step36">
-            <p>As you expected, the answer is government.</p>
-          </div>
-          <div class="step" id="step37">
-            <p>China outlaws surveying and mapping in the country to all non-Chinese companies, and is notoriously strict on foreign actors, privacy, and online content.</p>
-          </div>
-          <div class="step" id="step38">
-            <p>So, until Google becomes Chinese or the Chinese autocracy falls, don't expect to see China on the Street View map.</p>
-          </div>
-          <div class="step" id="step39">
-            <p>intermediate step / barrier of some sort</p>
-          </div>
-          <div class="step" id="step40">
-            <p>If you look closely on the map, though, Taiwan and Hong Kong have full Google Street View coverage.</p>
-          </div>
-          <div class="step" id="step41">
-            <p>So, why do they have coverage, but China doesn't?</p>
-          </div>
-          <div class="step" id="step42">
-            <p>As you expected, the answer is, once again, government.</p>
-          </div>
-          <div class="step" id="step43">
-            <p>Taiwan is a democratic country, with less restrictions on foreign companies operating within its borders. </p>
-          </div>
-          <div class="step" id="step44">
-            <p>The situation in Hong Kong is more complicated, with China having some authority over it, but it is semi-democratic (although, in recent years, has become less so). The key difference is that surveying is allowed in Hong Kong.</p>
-          </div>
-          <div class="step" id="step45">
-            <p>In East Asia, we clearly see the divide between the democratic and the authoritarian, the street view coverage and no street view coverage. </p>
-          </div>
-          <div class="step" id="step46">
-            <p>Final section line of some sort</p>
-          </div>
-      
-         
-          
+    <div class="section-header">
+      <h1>3: Germany</h1>
+    </div>
 
-                    <!---I want these two <p>s to be centered-->
-            <p>In an ideal world, every nation is mapped on street view; but, as we've seen, whether your country is on street view or not is a factor of privacy laws, form of government, development, safety, tourism, and many other factors. </p>  
-          <br><br>            
-            <p>But what can Google Street View be used for, other than expanding GeoGuessr players’ opportunities?</p>
-        
-          <div class="step" id="step59">
-            <p>Providing panorama coverage or indoor tours of famous locations and museums,</p>
-          </div>
-          <div class="step" id="step60">
-            <p>Analyzing urban issues and trends,</p>
-          </div>
-          <div class="step" id="step61">
-            <p>Mapping out your country's beauty to attract tourists,</p>
-          </div>
-          <div class="step" id="step62">
-            <p>Analyzing concentrations of greenhouse gases and pollutants in the atmosphere,</p>
-          </div>
-          <div class="step" id="step63">
-            <p>Even helping solve crimes.</p>
-          </div>
-          <!--center-->
-            <p>But most importantly,</p>
-                <br><br><br><br><br>
-              <!---I want to make the font on the one under this bigger (also centered)-->
-            <p>It helps us see the world!</p>
-                <br><br>     
-          <div class="step" id="step66">
-            <p>We use Google Maps every day, and street view helps us with daily life - planning out trips, looking for housing, or even finding an entrance to a building, satisfying our curiosity.</p>
-          </div> 
-          <div class="step" id="step67">
-            <p>Depending on where you live, you might have this luxury, or you might not.</p>
-          </div>
-          <div class="step" id="step68">
-            <p>It makes a difference. It is a privilege to be able to see accurate panoramic photos of your street,</p>
-          </div>
-             <div class="step" id="step69">
-            <p>your neighborhood,</p>
-          </div>
-             <div class="step" id="step70">
-            <p>your city,</p>
-          </div>
-             <div class="step" id="step71">
-            <p>and country on the internet.</p>
-          </div>
-          <div class="step" id="step72">
-            <p>Since this 2021 street view map, Google has added new or expanded coverage to many countries in every continent. </p>
-          </div>
-          <div class="step" id="step73">
-            <p>As ___ becomes more important, we can only hope that ___. </p>
-          </div>
-          <div class="step" id="step74">
-            <p>And maybe, along the way, making GeoGuessr a little more difficult.</p>
-          </div>
-        </div>
-      </section>
+    <div class="scrolly-overlay">
+      <div class="step" id="step18">
+        <p>Germany stood out as the one nation in Western Europe (and the developed world, really) that didn't have full Street View coverage until recently. In 2010, they rolled out coverage for 20 cities.</p>
+      </div>
+      <div class="step" id="step19">
+        <p>Let's see what the street view pictures looked like. See anything?</p>
+      </div>
+      <div class="step" id="step20">
+        <p>Not really. That's probably because it's all blurred.</p>
+      </div>
+      <div class="step" id="step21">
+        <p>The European Union has notoriously strict privacy and protection laws. Germany is no different. They maintained that they wouldn't allow Google to map streets until all privacy concerns have been addressed.</p>
+      </div>
+      <div class="step" id="step22">
+        <p>"What is private must remain private" - Ilse Aigner, German Consumer Protection Minister, 2013 </p>
+      </div>
+      <div class="step" id="step23">
+        <p>Germans are willing to pay significantly more than others to protect their privacy. What separates Germany from others?</p>
+      </div>
+      <div class="step" id="step24">
+        <p>In short, history.</p>
+      </div>
+      <div class="step" id="step25">
+        <p>Germany has had not one, but two extremely invasive surveillance states in the past century:</p>
+      </div>
+      <div class="step" id="step26">
+        <p>The Gestapo in Nazi Germany's government,</p>
+      </div>
+      <div class="step" id="step27">
+        <p>and the Stasi under the German Democratic Republic (GDR) puppet state.</p>
+      </div>
+      <div class="step" id="step28">
+        <p>annotation step</p>
+      </div>
+      <div class="step" id="step29">
+        <p>30 years after Germany's independence, their culture around privacy is tighter than ever.</p>
+      </div>
+      <div class="step" id="step31">
+        <p>In 2023, Google rolled out full Germany Street View coverage, with increased privacy regulations - filling the Street View hole in Central Europe. </p>
+      </div>
+      <div class="step" id="step32">
+        <p>Have Germans lost their _____, or ___?</p>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <h1>4: China // Taiwan // Hong Kong</h1>
+    </div>
+
+    <div class="scrolly-overlay">
+      <div class="step" id="step33">
+        <p>Perhaps the most striking nation missing in the expanse of global street coverage is China.</p>
+      </div>
+      <div class="step" id="step34">
+        <p>The second most populous country in the world, there is just a small amount of street view coverage by domestic companies in major cities. </p>
+      </div>
+      <div class="step" id="step35">
+        <p>But still, it's lacking coverage on the Google Street View map. Why is it missing?</p>
+      </div>
+      <div class="step" id="step36">
+        <p>As you expected, the answer is government.</p>
+      </div>
+      <div class="step" id="step37">
+        <p>China outlaws surveying and mapping in the country to all non-Chinese companies, and is notoriously strict on foreign actors, privacy, and online content.</p>
+      </div>
+      <div class="step" id="step38">
+        <p>So, until Google becomes Chinese or the Chinese autocracy falls, don't expect to see China on the Street View map.</p>
+      </div>
+      <div class="step" id="step39">
+        <p>intermediate step / barrier of some sort</p>
+      </div>
+      <div class="step" id="step40">
+        <p>If you look closely on the map, though, Taiwan and Hong Kong have full Google Street View coverage.</p>
+      </div>
+      <div class="step" id="step41">
+        <p>So, why do they have coverage, but China doesn't?</p>
+      </div>
+      <div class="step" id="step42">
+        <p>As you expected, the answer is, once again, government.</p>
+      </div>
+      <div class="step" id="step43">
+        <p>Taiwan is a democratic country, with less restrictions on foreign companies operating within its borders. </p>
+      </div>
+      <div class="step" id="step44">
+        <p>The situation in Hong Kong is more complicated, with China having some authority over it, but it is semi-democratic (although, in recent years, has become less so). The key difference is that surveying is allowed in Hong Kong.</p>
+      </div>
+      <div class="step" id="step45">
+        <p>In East Asia, we clearly see the divide between the democratic and the authoritarian, the street view coverage and no street view coverage. </p>
+      </div>
+      <div class="step" id="step46">
+        <p>Final section line of some sort</p>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <h1>5: So What?</h1>
+    </div>
+
+    <div class="scrolly-overlay">
+      <p>In an ideal world, every nation is mapped on street view; but, as we've seen, whether your country is on street view or not is a factor of privacy laws, form of government, development, safety, tourism, and many other factors. </p>
+      <br><br>
+      <p>But what can Google Street View be used for, other than expanding GeoGuessr players' opportunities?</p>
+
+      <div class="step" id="step59">
+        <p>Providing panorama coverage or indoor tours of famous locations and museums,</p>
+      </div>
+      <div class="step" id="step60">
+        <p>Analyzing urban issues and trends,</p>
+      </div>
+      <div class="step" id="step61">
+        <p>Mapping out your country's beauty to attract tourists,</p>
+      </div>
+      <div class="step" id="step62">
+        <p>Analyzing concentrations of greenhouse gases and pollutants in the atmosphere,</p>
+      </div>
+      <div class="step" id="step63">
+        <p>Even helping solve crimes.</p>
+      </div>
+      <p>But most importantly,</p>
+      <br><br><br><br><br>
+      <p style="font-size: 30px;">It helps us see the world!</p>
+      <br><br>
+      <div class="step" id="step66">
+        <p>We use Google Maps every day, and street view helps us with daily life - planning out trips, looking for housing, or even finding an entrance to a building, satisfying our curiosity.</p>
+      </div>
+      <div class="step" id="step67">
+        <p>Depending on where you live, you might have this luxury, or you might not.</p>
+      </div>
+      <div class="step" id="step68">
+        <p>It makes a difference. It is a privilege to be able to see accurate panoramic photos of your street,</p>
+      </div>
+      <div class="step" id="step69">
+        <p>your neighborhood,</p>
+      </div>
+      <div class="step" id="step70">
+        <p>your city,</p>
+      </div>
+      <div class="step" id="step71">
+        <p>and country on the internet.</p>
+      </div>
+      <div class="step" id="step72">
+        <p>Since this 2021 street view map, Google has added new or expanded coverage to many countries in every continent. </p>
+      </div>
+      <div class="step" id="step73">
+        <p>As ___ becomes more important, we can only hope that ___. </p>
+      </div>
+      <div class="step" id="step74">
+        <p>And maybe, along the way, making GeoGuessr a little more difficult.</p>
+      </div>
+    </div>
+
+  </section>
 
     <!-- Mobile Warning Modal -->
     <div id="deviceModal" class="modal">
@@ -406,7 +439,7 @@
   d3.select("#step1").on('stepin',function(e) {
     console.log("We've arrived at STEP ONE in the photo div")
     d3.select("#scrollyPhoto").attr("src", "images/kickedout.png");
-    // d3.select("#scrollyPhoto").style("transform", "scale(2.9) translate(0%, -10%)");
+
   })
 
     // Entering Step Two
@@ -423,7 +456,6 @@
     d3.select("#step4").on('stepin',function(e) {
     console.log("We've arrived at STEP FIVE in the photo div")
     d3.select("#scrollyPhoto").attr("src", "images/settings2.png");
-    // d3.select("#zoomBox").append("img").attr("src", "images/settings.png").style("position", "absolute")
   })
     // Entering Step Five
     d3.select("#step5").on('stepin',function(e) {
@@ -681,7 +713,7 @@
 	scroller
 		.setup({
 			step: "#scrolly .scrolly-overlay .step",
-			offset: 0.75,
+			offset: 0.6,
 			debug: false
 		})
 		.onStepEnter(function({ element, index, direction}) {
