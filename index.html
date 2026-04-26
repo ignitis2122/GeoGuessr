@@ -51,6 +51,8 @@
         font-size: 50px;
         width: 100%;
         box-sizing: border-box;
+          z-index: 10;
+          position: relative;
       }
 
       .section-header h1 {
@@ -137,13 +139,14 @@
 
       .photoDiv {
         width: 100%;
-          height: 100%;
+           height: auto;
         margin-right: 0px;
         margin-left: auto;
         display: block;
         transition:
           margin 1.5s 0s,
           transform 2.5s 0s;
+          
       }
 
       @media only screen and (min-width: 700px) {
@@ -206,7 +209,7 @@
         <p>Me and my best friend even won $200 in a tournament.</p>
       </div>
       <div class="step" id="step3">
-        <p>GeoGuessr is an online game that puts you somewhere on the world in Google Street View. You can move around, pan the camera, and zoom - but your objective is to place a pin somewhere in the world where you think you are.</p>
+        <p>GeoGuessr is an online game that puts you somewhere on the world in Google Street View. You can move around, pan the camera, and zoom - but your objective is to place a pin somewhere in the world where you think you are.<br><br>Here's a video of me playing.</p>
         <video width="500" height="400" controls> <source src="images/VideoReal.mov">
         </video>
       </div>
