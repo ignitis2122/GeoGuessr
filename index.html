@@ -45,6 +45,9 @@
         gap: 2rem;
         background-color: skyblue;
         font-size: 50px;
+            z-index: 10;
+          position: relative;
+          
       }
 
       .section-header {
@@ -58,6 +61,7 @@
         box-sizing: border-box;
           z-index: 10;
           position: relative;
+          
       }
 
       .section-header h1 {
@@ -493,8 +497,6 @@
     console.log("We've arrived at STEP 10 in the photo div")
     d3.select("#scrollyPhoto").attr("opacity", 0.5);
   })
-
-
     // Entering Step Eleven
     d3.select("#step11").on('stepin',function(e) {
     console.log("We've arrived at STEP ELEVEN in the photo div")
@@ -599,7 +601,7 @@
   })
           // Entering Step 32
     d3.select("#step32").on('stepin',function(e) {
-    console.log("We've arrived at STEP 31 in the photo div")
+    console.log("We've arrived at STEP 32 in the photo div")
     d3.select("#scrollyPhoto").attr("src", "images/GermanyAnno0.png");
     d3.select("#scrollyPhoto").style("transform", "scale(2.7) translate(-5%, 20%)");
   })
@@ -736,6 +738,20 @@
     d3.select("#scrollyPhoto").attr("src", "images/TestFinal.png");
     d3.select("#scrollyPhoto").style("transform", "scale(1) translate(0%,0%)");
   })
+
+  // Hide image when section headers are visible
+const headers = document.querySelectorAll('.section-header');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      d3.select("#scrollyPhoto").attr("src", "");
+      d3.select("#scrollyPhoto").style("transform", "scale(1) translate(0%, 0%)");
+    }
+  });
+}, { threshold: 0.9 });
+
+headers.forEach(header => observer.observe(header));
+
 </script>
 
 <!-- LEAVE ALONE, scrolly code goes in the section below -->
